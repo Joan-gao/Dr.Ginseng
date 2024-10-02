@@ -16,9 +16,8 @@ Dr.Ginseng combines biological data with wellness practices from TCM and Western
 3. **Full Stack Development**: Developed three main pages: Health Dashboard, TCM Knowledge Base, and LLM Medical Chatbot, with a TypeScript frontend, Python backend, and PostgreSQL database.
 ## How to Run
 
-1. **Frontend**
+1. **Install dependencies**
 
-- Install dependencies
 
 ```bash
 npm install
@@ -30,37 +29,47 @@ npm install
 npm run start
 ```
 
-2. **Backend**
-
-- Navigate to the Chatbot directory
+2. **Local Env**
 
 ```bash
-cd ChatbotProxy
+# Clerk
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=xxxxxxxxxxx
+CLERK_SECRET_KEY=xxxxxxxxxxx
+NEXT_PUBLIC_CLERK_SIGN_IN_URL=/login
+NEXT_PUBLIC_CLERK_SIGN_UP_URL=/signup
+
+# you need to config the clerk webhook secret key if you want to use the clerk with database
+CLERK_WEBHOOK_SECRET=xxxxxxxxxxx
+
+NEXT_PUBLIC_SERVICE_MODE=server
+
+# Postgres database URL
+DATABASE_URL=xxxxxxxxxxx
+
+# use `openssl rand -base64 32` to generate a key for the encryption of the database
+# we use this key to encrypt the user api key
+KEY_VAULTS_SECRET=xxxxxxxxxxx
+
+APP_URL=xxxxxxxxxxx
+
+DATABASE_DRIVER=neon
 ```
+3.**Init Databse**
 
-- Create a virtual environment
-
+- Navigate to the database folder
 ```bash
-python3 -m venv .venv
+/src/app/database/server/migrations
 ```
-
-- Activate the virtual environment
-
+- Copy and pasted the init sql to neon instance and run 
 ```bash
-.venv\Scripts\activate  # Windows
-source .venv/bin/activate  # macOS/Linux
-```
-
-- Install dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
-- Run the Flask application
-
-```bash
-flask --app chatbotProxy run
+0000_init.sql
+0001_add_client_id.sql
+0002_amusing_puma.sql
+0003_naive_echo.sql
+0004_add_next_auth.sql
+0005_pgvector.sql
+0006_add_knowledge_base.sql
+0007_fix_embedding_table.sql
 ```
 ## Links
 - ([Devpost](https://devpost.com/software/dr-ginseng))
