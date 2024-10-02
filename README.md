@@ -53,6 +53,8 @@ KEY_VAULTS_SECRET=xxxxxxxxxxx
 APP_URL=xxxxxxxxxxx
 
 DATABASE_DRIVER=neon
+
+OPENAI_API_KEY=xxxxxx
 ```
 3.**Init Databse**
 
