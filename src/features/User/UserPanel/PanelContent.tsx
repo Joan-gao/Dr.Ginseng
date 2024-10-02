@@ -17,15 +17,14 @@ import { useMenu } from './useMenu';
 const PanelContent = memo<{ closePopover: () => void }>(({ closePopover }) => {
   const router = useRouter();
   const isLoginWithAuth = useUserStore(authSelectors.isLoginWithAuth);
-  const [openSignIn, openSignup, signOut, openUserProfile, enableAuth, enabledNextAuth] =
-    useUserStore((s) => [
-      s.openLogin,
-      s.openSignup,
-      s.logout,
-      s.openUserProfile,
-      s.enableAuth(),
-      s.enabledNextAuth,
-    ]);
+  const [openSignIn, signOut, openUserProfile, enableAuth, enabledNextAuth] = useUserStore((s) => [
+    s.openLogin,
+    s.openSignup,
+    s.logout,
+    s.openUserProfile,
+    s.enableAuth(),
+    s.enabledNextAuth,
+  ]);
   const { mainItems, logoutItems } = useMenu();
 
   const handleOpenProfile = () => {
@@ -38,10 +37,10 @@ const PanelContent = memo<{ closePopover: () => void }>(({ closePopover }) => {
     openSignIn();
     closePopover();
   };
-  const handleSignUp = () => {
-    openSignup();
-    closePopover();
-  };
+  // const handleSignUp = () => {
+  //   openSignup();
+  //   closePopover();
+  // };
   // const handleSignUp = () => {
   //   router.push('/signup');
   //   closePopover();
