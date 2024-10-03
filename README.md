@@ -26,7 +26,7 @@ npm install
 - Start the frontend server
 
 ```bash
-npm run start
+npm run dev
 ```
 
 2. **Local Env**
